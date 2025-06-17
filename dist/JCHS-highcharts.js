@@ -1,15 +1,12 @@
-'use strict';
+"use strict";
 
 /**
 * @namespace JCHS
 */
 
 (function (H) {
-
   var JCHS = {
-
     logoURL: 'http://www.jchs.harvard.edu/sites/default/files/harvard_jchs_logo_2017.png',
-
     standardOptions: {
       lang: {
         thousandsSep: ",",
@@ -18,30 +15,33 @@
         downloadCSV: 'Download chart data (CSV)',
         downloadXLS: 'Download chart data (Excel)'
       },
-
       chart: {
         spacing: [5, 5, 5, 5],
         marginTop: 40
       },
-
-      title: { text: null },
-
-      subtitle: { text: null },
-
+      title: {
+        text: null
+      },
+      subtitle: {
+        text: null
+      },
       yAxis: {
-        title: { text: null },
-        labels: { format: '{value:,.0f}' },
+        title: {
+          text: null
+        },
+        labels: {
+          format: '{value:,.0f}'
+        },
         reversedStacks: false
       },
-
-      credits: { enabled: false },
-
+      credits: {
+        enabled: false
+      },
       tooltip: {
         enabled: true,
         useHTML: true,
         shared: true
       },
-
       plotOptions: {
         series: {
           connectNulls: true
@@ -52,27 +52,20 @@
           }
         }
       },
-
       exporting: {
-
         enabled: true,
-
         //default filename 
         filename: 'Chart - Harvard Joint Center for Housing Studies',
-
         chartOptions: {
-
           //make space for title at top and table notes at bottom
           chart: {
             spacingTop: 12,
             marginTop: 50,
             marginBottom: 130
           },
-
           title: {
             y: 8
           },
-
           //use subtitle element for our table notes on export
           subtitle: {
             widthAdjust: -170,
@@ -81,41 +74,50 @@
             align: 'left',
             verticalAlign: 'bottom'
           },
-
-          series: { borderWidth: 0.5 },
-
-          legend: { y: -45 }
-
-        }, //end export.chartOptions
+          series: {
+            borderWidth: 0.5
+          },
+          legend: {
+            y: -45
+          }
+        },
+        //end export.chartOptions
 
         //define menu item (functionality is added as a callback on chart load)
         menuItemDefinitions: {
           viewFullDataset: {
             text: 'View full dataset'
           }
-        }, //end menuItemDefinitions
+        },
+        //end menuItemDefinitions
 
         buttons: {
           contextButton: {
             text: 'Export',
             menuItems: ['viewFullDataset',
             //'viewSortableTable',
-            'separator', 'printChart', 'downloadPDF', 'separator', 'downloadPNG', 'downloadJPEG', 'separator', 'downloadXLS'] //end contextButtons
-          } //end buttons
-
-        } }, //end exporting
+            'separator', 'printChart', 'downloadPDF', 'separator', 'downloadPNG', 'downloadJPEG', 'separator', 'downloadXLS'
+            //'downloadFullData'
+            ]
+          } //end contextButtons
+        } //end buttons
+      },
+      //end exporting
 
       navigation: {
         buttonOptions: {
           height: 20,
           symbolY: 8,
           symbolSize: 12,
-          theme: { padding: 1 }
-        } //end navigation
-      } }, //end standardOptions
+          theme: {
+            padding: 1
+          }
+        }
+      } //end navigation
+    },
+    //end standardOptions
 
     drilldownOptions: {
-
       chart: {
         margin: undefined,
         marginTop: undefined,
@@ -123,58 +125,52 @@
         marginLeft: 50,
         marginRight: 10
       },
-
       plotOptions: {
         series: {
-          label: { enabled: false }
+          label: {
+            enabled: false
+          }
         }
       },
-
-      legend: { enabled: false },
-
-      mapNavigation: { enabled: false },
-
-      exporting: { enabled: false }
-
+      legend: {
+        enabled: false
+      },
+      mapNavigation: {
+        enabled: false
+      },
+      exporting: {
+        enabled: false
+      }
     } //end drilldownOptions
-    //end JCHS
+  }; //end JCHS
 
+  /**
+   * @function #createSearchBox
+   * @memberof JCHS
+   *
+   * @description Shorthand for createSearchBoxes(1, ...arguments). 
+   * (i.e., this function is equivalent to calling createSearchBoxes with number_of_boxes = 1)
+   *
+   * @param {Array} data - Reference dataset for chart.
+   * @param {Function} callback - Function called on seach_box `change` event. 
+   * Passes the value of the search box as the only argument 
+   * (i.e., $(`#search_input_${chart_slug}`).val()).
+   * @param {String} chart_slug - Unique ID of chart, to ensure unique <div> 
+   * ids in HTML.
+   * @param {Number} [col_index] - Column index of data to be listed in the 
+   * search box. Defaults to 0.
+   * @param {String} [type] - 'dropdown' or 'search'. Only differences are 
+   * 'dropdown' has a down arrow at the right side of the box and has 
+   * placeholder text 'Select a metro...', while 'search' has no arrow 
+   * and has placehold text  'Search for metro...'.
+   * @param {String} [placeholder] - Override the default placeholder text. 
+   * (e.g., 'Select a state...').
+   *
+   */
 
-    /**
-     * @function #createSearchBox
-     * @memberof JCHS
-     *
-     * @description Shorthand for createSearchBoxes(1, ...arguments). 
-     * (i.e., this function is equivalent to calling createSearchBoxes with number_of_boxes = 1)
-     *
-     * @param {Array} data - Reference dataset for chart.
-     * @param {Function} callback - Function called on seach_box `change` event. 
-     * Passes the value of the search box as the only argument 
-     * (i.e., $(`#search_input_${chart_slug}`).val()).
-     * @param {String} chart_slug - Unique ID of chart, to ensure unique <div> 
-     * ids in HTML.
-     * @param {Number} [col_index] - Column index of data to be listed in the 
-     * search box. Defaults to 0.
-     * @param {String} [type] - 'dropdown' or 'search'. Only differences are 
-     * 'dropdown' has a down arrow at the right side of the box and has 
-     * placeholder text 'Select a metro...', while 'search' has no arrow 
-     * and has placehold text  'Search for metro...'.
-     * @param {String} [placeholder] - Override the default placeholder text. 
-     * (e.g., 'Select a state...').
-     *
-     */
-
-  };JCHS.createSearchBox = function (data, //eslint-disable-line no-unused-vars
-  callback, //eslint-disable-line no-unused-vars
-  chart_slug, //eslint-disable-line no-unused-vars
-  col_index, //eslint-disable-line no-unused-vars
-  type, //eslint-disable-line no-unused-vars
-  placeholder) {
-    //eslint-disable-line no-unused-vars
-
+  JCHS.createSearchBox = function (data, callback, chart_slug, col_index, type, placeholder) {
     JCHS.createSearchBoxes.apply(JCHS, [1].concat(Array.prototype.slice.call(arguments)));
   }; //end createSearchBox()
-
 
   /**
    * @function #createSearchBoxes
@@ -211,8 +207,6 @@
     var col_index = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 0;
     var type = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'dropdown';
     var placeholder = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 'default';
-
-
     if (type === 'search' & placeholder === 'default') {
       placeholder = 'Search for metro...';
     }
@@ -234,11 +228,9 @@
       //pass i as argument to anonmyous self-executing function so that it passes value not reference
       //see: https://stackoverflow.com/questions/2568966/how-do-i-pass-the-value-not-the-reference-of-a-js-variable-to-a-function
       (function (i) {
-
         //add text input box
-        $('#search_box' + chart_slug).append('\n          <input id="search_input' + chart_slug + '_' + i + '" class="JCHS-chart__search-box__input" autocomplete="off">\n        ');
-
-        var box = $('#search_input' + chart_slug + '_' + i);
+        $("#search_box" + chart_slug).append("\n          <input id=\"search_input" + chart_slug + "_" + i + "\" class=\"JCHS-chart__search-box__input\" autocomplete=\"off\">\n        ");
+        var box = $("#search_input" + chart_slug + "_" + i);
 
         //add placeholder text
         if (Array.isArray(placeholder)) {
@@ -253,8 +245,8 @@
         }
 
         //add a list element after the input box to contain the list of options (e.g., metros) 
-        box.after('<ul id="search_list' + chart_slug + '_' + i + '" class="JCHS-chart__search-box__list"></ul>');
-        var list = $('#search_list' + chart_slug + '_' + i);
+        box.after("<ul id=\"search_list" + chart_slug + "_" + i + "\" class=\"JCHS-chart__search-box__list\"></ul>");
+        var list = $("#search_list" + chart_slug + "_" + i);
 
         //get an unduplicated list of options for the list
         var dedup_data = [];
@@ -266,7 +258,7 @@
 
         //add each option to the list
         dedup_data.forEach(function (el) {
-          return list.append('<li>' + el + '</li>');
+          return list.append("<li>" + el + "</li>");
         });
 
         //when user clicks into the search box, hide the placeholder text and show the list of options
@@ -317,7 +309,6 @@
           box.change();
         });
       })(counter);
-
       counter++; //increment counter when each box is complete
     } //end while loop
   }; //end createSearchBoxes()
@@ -335,11 +326,16 @@
    */
 
   JCHS.yAxisTitle = function (chart, yAxis_title, yAxis2_title) {
-    chart.renderer.text(yAxis_title).addClass('highcharts-axis-title').align({ y: -5 }, false, 'plotBox').add();
+    chart.renderer.text(yAxis_title).addClass('highcharts-axis-title').align({
+      y: -5
+    }, false, 'plotBox').add();
 
     //add title to second yAxis, if it exists
     if (typeof yAxis2_title == 'string') {
-      var yAxis2 = chart.renderer.text(yAxis2_title).addClass('highcharts-axis-title').align({ align: 'right', y: -5 }, false, 'plotBox').add();
+      var yAxis2 = chart.renderer.text(yAxis2_title).addClass('highcharts-axis-title').align({
+        align: 'right',
+        y: -5
+      }, false, 'plotBox').add();
       var box = yAxis2.getBBox();
       yAxis2.translate(-box.width, 0);
     }
@@ -377,8 +373,6 @@
     var y = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : -20;
     var verticalAlign = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'bottom';
     var align = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 'center';
-
-
     var existing_text = $('.JCHS-chart__text-annotation');
     if (existing_text != null) {
       existing_text.each(function (idx, x) {
@@ -388,9 +382,12 @@
         }
       });
     }
-
-    var rendered_text = chart.renderer.text(text).addClass('JCHS-chart__text-annotation').align({ align: align, verticalAlign: verticalAlign, x: x, y: y }, false, 'plotBox').add();
-
+    var rendered_text = chart.renderer.text(text).addClass('JCHS-chart__text-annotation').align({
+      align: align,
+      verticalAlign: verticalAlign,
+      x: x,
+      y: y
+    }, false, 'plotBox').add();
     var box = rendered_text.getBBox();
     switch (align) {
       case 'center':
@@ -401,7 +398,6 @@
         break;
     }
   }; //end responsiveAnnotation()
-
 
   /**
    * @function #mapLocatorCircle
@@ -423,9 +419,10 @@
     map_obj.series[0].points.forEach(function (el, idx) {
       if (el.name == search_value) {
         map_obj.series[0].points[idx].select(true);
-
-        map_obj.renderer.circle(map_obj.series[0].points[idx].plotX, //x
-        map_obj.series[0].points[idx].plotY + map_obj.margin[0], //y
+        map_obj.renderer.circle(map_obj.series[0].points[idx].plotX,
+        //x
+        map_obj.series[0].points[idx].plotY + map_obj.margin[0],
+        //y
         150 //radius
         ).attr({
           fill: 'transparent',
@@ -435,13 +432,11 @@
           r: 0
         }).add().toFront();
       }
-
       setTimeout(function () {
         return map_obj.series[0].points[idx].select(false);
       }, 700);
     });
   }; //end mapLocatorCircle()
-
 
   /**
    * @function #requestURL
@@ -461,14 +456,11 @@
 
   JCHS.requestURL = function (sheetID) {
     var range = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'Sheet1';
-
     var baseURL = 'https://sheets.googleapis.com/v4/spreadsheets/';
     var API_Key = 'AIzaSyDY_gHLV0A7liVYq64RxH7f7IYUKF15sOQ';
     var API_params = 'valueRenderOption=UNFORMATTED_VALUE';
     var requestURL = baseURL + sheetID + "/values/" + range + "?key=" + API_Key + "&" + API_params;
-
     console.log(requestURL);
-
     return requestURL;
   };
 
@@ -484,15 +476,20 @@
    */
 
   JCHS.addTableNotes = function (chart, user_input_note) {
-
     if (chart.options.hasOwnProperty('JCHS') && chart.options.JCHS.hasOwnProperty('tableNotes')) {
       var chart_options_note = chart.options.JCHS.tableNotes;
     }
-
     var text = H.pick(user_input_note, chart_options_note, '');
 
     //draw text
-    var rendered_text = chart.renderer.text(text).css({ width: '420px' }).addClass('JCHS-chart__table-notes--exporting').align({ align: 'right', verticalAlign: 'bottom', x: -10, y: 8 }).add();
+    var rendered_text = chart.renderer.text(text).css({
+      width: '420px'
+    }).addClass('JCHS-chart__table-notes--exporting').align({
+      align: 'right',
+      verticalAlign: 'bottom',
+      x: -10,
+      y: 8
+    }).add();
 
     //align to lower right corner
     var box = rendered_text.getBBox();
@@ -515,11 +512,8 @@
 
   JCHS.numFormat = function (number) {
     var decimals = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -1;
-
-
     return H.numberFormat(number, decimals, '.', ',');
   }; //end numFormat
-
 
   /* Add JCHS functionality to Highcharts */
 
@@ -532,12 +526,9 @@
   //add callbacks to chart load
   H.Chart.prototype.callbacks.push(function (chart) {
     if (chart.renderer.forExport) {
-
       chart.renderer.image(JCHS.logoURL, 0, chart.chartHeight - 50, 170, 55).add();
-
       H.JCHS.addTableNotes(chart);
     }
-
     if (chart.options.exporting.hasOwnProperty('JCHS') && chart.options.exporting.JCHS.hasOwnProperty('sheetID')) {
       chart.update({
         exporting: {

@@ -1,3 +1,11 @@
+// Set CHROME_BIN to Puppeteer's Chromium for headless testing in CI/Codespaces
+typeof process.env.CHROME_BIN === 'undefined' && (() => {
+  try {
+    process.env.CHROME_BIN = require('puppeteer').executablePath();
+  } catch (e) {
+    // Puppeteer not installed or error, fallback to system Chrome
+  }
+})();
 
 module.exports = function (grunt) {
 
@@ -11,16 +19,8 @@ module.exports = function (grunt) {
     // lint our JS
     eslint: {
       options: {
-        "extends": "eslint:recommended",
-        "rules": {
-          // enable additional rules
-          "indent": ["warn", 2],
-          "semi": ["warn", "never"],
-          "valid-jsdoc": "warn",
-          "no-confusing-arrow": "warn",
-          "no-magic-numbers": "off",
-        },
-        "maxWarnings": 20,
+        overrideConfigFile: ".eslintrc.flat.js",
+        maxWarnings: 20
       },
       target: ['Gruntfile.js', 'src/js/*.js', 'test/*.js']
     },
@@ -50,34 +50,15 @@ module.exports = function (grunt) {
       }
     },
 
-    /* PostCSS */
-    // Stylelint, PostCSS Preset Env, Autoprefixer, CSSNano 
-    // lint, transpile, add vendor prefixes, and minify CSS
-    postcss: {
+    /* Stylelint */
+    // Lint CSS files
+    stylelint: {
       options: {
-        map: false,
-        processors: [
-          require("stylelint")({ //linting 
-            "rules": {
-              "block-no-empty": true,
-              "color-no-invalid-hex": true,
-              "comment-empty-line-before": [ "always", { "ignore": ["stylelint-commands", "after-comment"] } ],
-              "declaration-colon-space-after": "always",
-              "indentation": [2],
-              "max-empty-lines": 2,
-              "rule-empty-line-before": [ "always", { "except": ["first-nested"], "ignore": ["after-comment"] } ]
-            }
-          }),
-          //require('postcss-import'), //bundle imported CSS...would create redundancy on pages with more than one chart
-          require('postcss-preset-env'), //polyfill any new CSS features
-          require('autoprefixer'), //add vendor prefixes
-          require('cssnano')() // minify the result
-        ],
+        configFile: '.stylelintrc.json',
+        formatter: 'string',
+        failOnError: false
       },
-      dist: {
-        src: 'src/css/*.css',
-        dest: 'dist/JCHS-highcharts.min.css'
-      }
+      src: ['src/css/*.css']
     },
 
     /* JSDoc */
@@ -104,7 +85,7 @@ module.exports = function (grunt) {
             'dist/JCHS-highcharts.js',
             'test/*.js'
           ],
-          browsers: ['Chrome', 'Firefox', /*'Safari',*/ 'PhantomJS', 'IE'],
+          browsers: ['ChromeHeadless'], // Use only ChromeHeadless via Puppeteer
           reporters: ['progress', 'html', 'coverage'],
           preprocessors: {
             'dist/JCHS-highcharts.js': ['coverage'] //preprocess files to create coverage report
@@ -128,9 +109,32 @@ module.exports = function (grunt) {
   })
 
   // name the tasks 
-  grunt.registerTask('default', ['eslint', 'babel', 'uglify',  'postcss', 'karma', 'jsdoc'])
+  grunt.registerTask('default', ['eslint', 'babel', 'uglify', 'stylelint', 'postcss-cli', 'karma', 'jsdoc'])
   grunt.registerTask('test', ['karma'])
-  grunt.registerTask('css', ['postcss'])
+  grunt.registerTask('css', ['stylelint', 'postcss-cli'])
   grunt.registerTask('js', ['eslint', 'jsdoc', 'babel', 'uglify'])
+
+  // PostCSS CLI task
+  grunt.registerTask('postcss-cli', 'Run PostCSS CLI for CSS build', function() {
+    const done = this.async();
+    grunt.util.spawn({
+      cmd: 'npx',
+      args: [
+        'postcss',
+        'src/css/JCHS-highcharts.css',
+        '-o',
+        'dist/JCHS-highcharts.min.css'
+      ],
+      opts: { stdio: 'inherit' }
+    }, function(error, result, code) {
+      if (error) {
+        grunt.log.error(result.stderr || error);
+        done(false);
+      } else {
+        grunt.log.writeln(result.stdout);
+        done();
+      }
+    });
+  });
 
 }

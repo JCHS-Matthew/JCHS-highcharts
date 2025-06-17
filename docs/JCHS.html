@@ -310,7 +310,8 @@
 
 
 <div class="description">
-    Shorthand for createSearchBoxes(1, ...arguments). (i.e., this function is equivalent to calling createSearchBoxes with number_of_boxes = 1)
+    Shorthand for createSearchBoxes(1, ...arguments). 
+(i.e., this function is equivalent to calling createSearchBoxes with number_of_boxes = 1)
 </div>
 
 
@@ -451,7 +452,9 @@
             
 
             <td class="description last">
-                Function called on seach_box `change` event. Passes the value of the search box as the only argument (i.e., $(`#search_input_${chart_slug}`).val()).
+                Function called on seach_box `change` event. 
+Passes the value of the search box as the only argument 
+(i.e., $(`#search_input_${chart_slug}`).val()).
                 
             </td>
         </tr>
@@ -485,7 +488,8 @@
             
 
             <td class="description last">
-                Unique ID of chart, to ensure unique <div> ids in HTML.
+                Unique ID of chart, to ensure unique <div> 
+ids in HTML.
                 
             </td>
         </tr>
@@ -521,7 +525,8 @@
             
 
             <td class="description last">
-                Column index of data to be listed in the search box. Defaults to 0.
+                Column index of data to be listed in the 
+search box. Defaults to 0.
                 
             </td>
         </tr>
@@ -557,7 +562,10 @@
             
 
             <td class="description last">
-                'dropdown' or 'search'. Only differences are 'dropdown' has a down arrow at the right side of the box and has placeholder text 'Select a metro...', while 'search' has no arrow and has placehold text  'Search for metro...'.
+                'dropdown' or 'search'. Only differences are 
+'dropdown' has a down arrow at the right side of the box and has 
+placeholder text 'Select a metro...', while 'search' has no arrow 
+and has placehold text  'Search for metro...'.
                 
             </td>
         </tr>
@@ -593,7 +601,8 @@
             
 
             <td class="description last">
-                Override the default placeholder text. (e.g., 'Select a state...').
+                Override the default placeholder text. 
+(e.g., 'Select a state...').
                 
             </td>
         </tr>
@@ -631,7 +640,12 @@
 
 
 <div class="description">
-    Add search box with filtered list to the page. Adds one item to the list for each unique value of a column from ref_data.   On clicking a list item, the passed callback function is called, which passes the value of the search box as the only argument (i.e., $(`#search_input_${chart_slug}`).val()).
+    Add search box with filtered list to the page. Adds one item to the list 
+for each unique value of a column from ref_data.
+   
+On clicking a list item, the passed callback function is called, which 
+passes the value of the search box as the only argument 
+(i.e., $(`#search_input_${chart_slug}`).val()).
 </div>
 
 
@@ -806,7 +820,9 @@
             
 
             <td class="description last">
-                Function called on seach_box `change` event. Passes the value of the search box as the only argument (i.e., $(`#search_input_${chart_slug}`).val()).
+                Function called on seach_box `change` event. 
+Passes the value of the search box as the only argument 
+(i.e., $(`#search_input_${chart_slug}`).val()).
                 
             </td>
         </tr>
@@ -842,7 +858,8 @@
             
 
             <td class="description last">
-                Unique ID of chart, to ensure unique <div> ids in HTML.
+                Unique ID of chart, to ensure unique <div> 
+ids in HTML.
                 
             </td>
         </tr>
@@ -878,7 +895,8 @@
             
 
             <td class="description last">
-                Column index of data to be listed in the search box. Defaults to 0.
+                Column index of data to be listed in the 
+search box. Defaults to 0.
                 
             </td>
         </tr>
@@ -914,7 +932,10 @@
             
 
             <td class="description last">
-                'dropdown' or 'search'. Only differences are 'dropdown' has a down arrow at the right side of the box and has placeholder text 'Select a metro...', while 'search' has no arrow and has placehold text  'Search for metro...'.
+                'dropdown' or 'search'. Only differences are 
+'dropdown' has a down arrow at the right side of the box and has 
+placeholder text 'Select a metro...', while 'search' has no arrow 
+and has placehold text  'Search for metro...'.
                 
             </td>
         </tr>
@@ -953,7 +974,9 @@
             
 
             <td class="description last">
-                Override the default placeholder text. Pass as an array to have different placeholder text in each box. (e.g., 'Select a state...' or ['Select a state...', 'Select a county...']).
+                Override the default placeholder text. 
+Pass as an array to have different placeholder text in each box. 
+(e.g., 'Select a state...' or ['Select a state...', 'Select a county...']).
                 
             </td>
         </tr>
@@ -991,7 +1014,10 @@
 
 
 <div class="description">
-    Draw a circle animated to "zero in" on a location, based on a search value that corresponds to a point name in the series displayed on the map. Useful when called from the searchCallback function when a user selects a metro from the search dropdown.
+    Draw a circle animated to "zero in" on a location, based on 
+a search value that corresponds to a point name in the series 
+displayed on the map. Useful when called from the searchCallback 
+function when a user selects a metro from the search dropdown.
 </div>
 
 
@@ -1114,7 +1140,9 @@
             
 
             <td class="description last">
-                The name to search for on the map. Compares the search_value to the point.name for each point in the currently displayed series.
+                The name to search for on the map. 
+Compares the search_value to the point.name for each point in the 
+currently displayed series.
                 
             </td>
         </tr>
@@ -1295,7 +1323,8 @@
             
 
             <td class="description last">
-                The number of decimal places. A value of -1 preserves       the amount in the input number. Defaults to -1.
+                The number of decimal places. A value of -1 preserves
+       the amount in the input number. Defaults to -1.
                 
             </td>
         </tr>
@@ -1358,7 +1387,8 @@
 
 
 <div class="description">
-    Builds a GET request URL for the Google Sheets API, based on inputsheet ID and range.
+    Builds a GET request URL for the Google Sheets API, based on input
+sheet ID and range.
 </div>
 
 
@@ -1502,7 +1532,8 @@
             
 
             <td class="description last">
-                The data range. Defaults to 'Sheet1'. Accepts        sheet ranges that conform to the Google API (e.g., 'Sheet1!A:F').
+                The data range. Defaults to 'Sheet1'. Accepts 
+       sheet ranges that conform to the Google API (e.g., 'Sheet1!A:F').
                 
             </td>
         </tr>
@@ -1877,7 +1908,16 @@
 <div class="section-examples">
 <h5>Example</h5>
 
-    <pre class="prettyprint"><code>var rho_value = 'L(1) ρ = 0.53'...chart: {  events: {    render: function() {      H.JCHS.responsiveAnnotation(this, rho_value)    }  }}...</code></pre>
+    <pre class="prettyprint"><code>var rho_value = 'L(1) ρ = 0.53'
+...
+chart: {
+  events: {
+    render: function() {
+      H.JCHS.responsiveAnnotation(this, rho_value)
+    }
+  }
+}
+...</code></pre>
 
 </div>
 
@@ -2115,7 +2155,7 @@
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Mar 11 2019 12:04:16 GMT-0400 (Eastern Daylight Time) using the Minami theme.
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.11</a> on Tue Jun 17 2025 15:28:46 GMT+0000 (Coordinated Universal Time) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
