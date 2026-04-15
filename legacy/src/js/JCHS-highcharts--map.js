@@ -78,10 +78,10 @@
             series: {
               point: {
                 events: {
-                  click: function () {
+                  click: function (event) {
 
                     //JCHS shapefiles call it GEOID, Highcharts shapefiles (e.g., counties) call it fips
-                    var GEOID = H.pick(event.point.GEOID, event.point.fips)
+                    var GEOID = H.pick(event.point.GEOID, event.point.fips, '')
 
                     chart.options.JCHS.drilldownFunction(event.point.name, GEOID, event.point)
                   }
