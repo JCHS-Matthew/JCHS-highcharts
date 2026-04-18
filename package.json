@@ -1,20 +1,12 @@
 {
   "name": "jchs-highcharts",
-  "version": "0.1.1",
+  "version": "2.0.0",
   "description": "Highcharts plugin for Harvard Joint Center for Housing Studies house style and interactive functionality for charts and maps.",
-  "main": "src/js/JCHS-highcharts.js",
-  "directories": {
-    "doc": "docs",
-    "test": "test"
-  },
+  "main": "dist/JCHS-highcharts.js",
   "scripts": {
-    "test": "jest",
-    "generate-docs": "node_modules/.bin/jsdoc --configure .jsdoc.json --verbose",
-    "cypress:open": "cypress open"
-  },
-  "jest": {
-    "verbose": true,
-    "testURL": "http://localhost/"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -27,51 +19,10 @@
   },
   "homepage": "https://github.com/JCHS-Matthew/JCHS-Highcharts#readme",
   "devDependencies": {
-    "autoprefixer": "^8.6.5",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "cssnano": "^4.0.1",
-    "cypress": "^3.1.0",
-    "grunt": "^0.4.5",
-    "grunt-babel": "^7.0.0",
-    "grunt-contrib-qunit": "^2.0.0",
-    "grunt-contrib-uglify": "^0.5.1",
-    "grunt-eslint": "^21.0.0",
-    "grunt-jsdoc": "^2.2.1",
-    "grunt-karma": "^2.0.0",
-    "grunt-postcss": "^0.9.0",
-    "highcharts": "^6.1.1",
-    "jquery": "^3.3.1",
-    "karma": "^2.0.4",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-coverage": "^1.1.2",
-    "karma-firefox-launcher": "^1.1.0",
-    "karma-htmlfile-reporter": "^0.3.5",
-    "karma-ie-launcher": "^1.0.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-qunit": "^2.1.0",
-    "karma-safari-launcher": "^1.0.0",
-    "load-grunt-tasks": "^4.0.0",
-    "minami": "^1.2.3",
-    "postcss-import": "^11.1.0",
-    "postcss-preset-env": "^5.2.1",
-    "qunit": "^2.6.1",
-    "stylelint": "^9.3.0"
-  },
-  "dependencies": {
-    "grunt-cli": "^1.2.0"
-  },
-  "browserslist": [
-    "defaults"
-  ],
-  "eslintConfig": {
-    "env": {
-      "es6": true,
-      "jquery": true,
-      "qunit": true
-    },
-    "globals": {
-      "Highcharts": true
-    }
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "highcharts": "^11.4.8",
+    "postcss": "^8.4.49",
+    "vite": "^6.0.5"
   }
 }

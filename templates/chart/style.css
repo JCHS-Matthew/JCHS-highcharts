@@ -1,0 +1,7 @@
+/* In production, import the S3-hosted v2 CSS URL */
+@import url('../../dist/JCHS-highcharts.css');
+
+/* Chart-specific colors: dark teal, burnt orange, slate blue */
+.highcharts-color-0 { fill: #323e3d; stroke: #323e3d; color: #323e3d; }
+.highcharts-color-1 { fill: #bf4f27; stroke: #bf4f27; color: #bf4f27; }
+.highcharts-color-2 { fill: #507687; stroke: #507687; color: #507687; }

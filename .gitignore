@@ -1,6 +1,2 @@
-/build/
+/dist/
 /node_modules/
-/test-results/
-/cypress/*/
-cypress.json
-jchs-highcharts-workspace.code-workspace
